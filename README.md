@@ -4,12 +4,10 @@
 
 **Language models attribute conflict events differently depending on the language of the person asking.**
 
-<img src="docs/figures/slide_headline.jpg" alt="Headline result: asked in the attacker's language, models name the reported attacker in 64.7% of answers, against 74.1% in the victim's language and 75.9% in English" width="820">
-
-<img src="docs/figures/slide_example.jpg" alt="Claude Haiku 5.5 on the September 2023 Nagorno-Karabakh offensive: 'Azerbaijani forces' in English and Armenian, 'Disputed / unclear' in Azerbaijani" width="820">
+<img src="figures/fig3_attribution.png" alt="Share of answers naming the reported attacker, asked in the attacker's language (orange) versus the victim's language (blue), for each of 8 models and 5 conflicts: every model and every conflict shows the same direction" width="820">
 
 [![Paper](https://img.shields.io/badge/Paper-PDF%20(Apart%20template)-1E3A5F)](paper/Same_Strike_Different_Story.pdf)
-[![Slides](https://img.shields.io/badge/Slides-Live%20deck-0F766E)](https://astral-fate.github.io/same-strike-different-story/slides/)
+[![Slides](https://img.shields.io/badge/Slides-Live%20deck-0F766E)](https://astral-fate.github.io/same-strike-different-story/)
 [![Apart Sprint](https://img.shields.io/badge/Apart%20Research-AI%20x%20Epistemics%20Sprint%202026-0D9488)](https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15)
 [![Raw responses](https://img.shields.io/badge/Data-6%2C335%20raw%20responses-C2410C)](results/runs.jsonl)
 [![Results](https://img.shields.io/badge/Results-summary.json%20%C2%B7%20tables-1D4ED8)](results/summary.json)
@@ -70,9 +68,14 @@ different facts in different languages, but for encyclopaedic knowledge, not con
 the comparison to eight current models, five conflicts in which each language plays both roles, attribution and
 civilian share, a non-political negative control, and a tested mitigation.
 
-## Design
+## Architecture
 
-<img src="docs/figures/slide_design.jpg" alt="Design: 22 incidents, 5 conflicts, 11 languages, 8 models, 6,335 responses, US$0.61; pipeline from neutral English item to translation, back-translation audit and querying" width="900">
+<img src="figures/architecture.png" alt="How the measurement works: 22 conflict incidents and 6 control disasters are written as one neutral English template, translated by Claude Haiku 5.5, back-translated and audited by GPT-4o-mini (104/104 pass) into 132 frozen prompts; each prompt is asked in the attacker's language, the victim's language or English, under a baseline and a language-invariance instruction, to 8 models with 3 samples (6,335 responses), parsed, and analysed for attribution, death tolls against the controls, and the mitigation" width="900">
+
+Built by [`scripts/build_architecture.py`](scripts/build_architecture.py), which reads every number from `data/` and
+`results/` ([SVG](figures/architecture.svg)).
+
+## Design
 
 | | |
 |---|---|
@@ -94,11 +97,16 @@ civilian share, a non-political negative control, and a tested mitigation.
 | Victim's language | **74.1%** | 10.1% | 0.9% | 14.5% |
 | English | 75.9% | 13.2% | 1.3% | 8.3% |
 
-<img src="figures/fig3_attribution.png" alt="Share of answers naming the reported attacker, attacker's language versus victim's language, by model and by conflict" width="820">
+**Example.** Claude Haiku 5.5 on *"the military offensive in Nagorno-Karabakh on 19–20 September 2023"*, all three
+samples per language in agreement:
+
+| Asked in | Answer | Deaths |
+|---|---|---|
+| English | B · Azerbaijani forces | 400 |
+| Armenian (victim's language) | B · Azerbaijani forces | 200 |
+| Azerbaijani (attacker's language) | **C · disputed or unclear** | 218 |
 
 **Robustness**
-
-<img src="docs/figures/slide_robustness.jpg" alt="The gap survives controls for language identity: 9.7 points with fixed effects; 7.3–11.4 leaving out one conflict; 5.8 points in well-resourced conflicts only" width="820">
 
 | Check | Gap (points) |
 |---|---|
@@ -112,9 +120,19 @@ civilian share, a non-political negative control, and a tested mitigation.
 13.8% of model–event cells are lower and 15.5% higher in the attacker's language (Wilcoxon p = 0.11): no directional
 bias. Civilian shares do not differ (−0.6 points, CI −3.2 to 1.5).
 
-**Mitigation**
+**Mitigation.** A fixed English system instruction asking for the same answer in every language narrows the gap from
+**9.4 to 5.5 points** (CI 0.9–10.5; McNemar 15 vs 5, p = 0.04). In the three well-resourced conflicts it falls to 1.3.
 
-<img src="docs/figures/slide_mitigation.jpg" alt="The language-invariance instruction narrows the gap from 9.4 to 5.5 points; per-model table of baseline and instructed gaps" width="820">
+| Model | Gap, baseline | Gap, with instruction | Change |
+|---|---|---|---|
+| GPT-5.6-Luna | 15.8 | 5.3 | narrows |
+| DeepSeek-V3 | 14.0 | 7.0 | narrows |
+| GPT-4o-mini | 12.3 | 12.3 | unchanged |
+| Mistral-Small-24B | 10.5 | −8.8 | reverses |
+| Qwen 3.7-Flash | 7.0 | 7.0 | unchanged |
+| Llama-3.1-8B | 7.0 | 12.3 | widens |
+| Claude Haiku 5.5 | 5.3 | 1.8 | narrows |
+| GLM-5.3-Flash | 3.5 | 7.0 | widens |
 
 All numbers above are read from [`results/summary.json`](results/summary.json) and
 [`results/tables/`](results/tables); the paper and the slides are generated from the same files.
@@ -137,7 +155,8 @@ python -m pytest -q tests                                              # parser 
 python scripts/translate.py     # 1. translate + back-translate + audit -> data/prompts.jsonl (already committed)
 python scripts/run.py           # 2. 6,336 queries; resumable, appends to results/runs.jsonl (--pilot for a small run)
 python scripts/analyze.py       # 3. results/summary.json and results/tables/*.csv
-python scripts/figures.py       # 4. figures/*.png
+python scripts/figures.py       # 4. figures/*.png (paper figures)
+python scripts/build_architecture.py   # architecture diagram -> figures/architecture.svg + .png
 python slides/build_slides.py   # 5. slides/index.html
 python paper/compile.py         # 6. paper -> DOCX + PDF on the Apart template (needs MS Word)
 ```
@@ -163,21 +182,25 @@ scripts/
   translate.py        translation, back-translation and audit
   run.py              the 6,336 queries
   analyze.py          bootstrap CIs, McNemar, fixed effects, toll divergence -> summary.json, tables/
-  figures.py          figures/*.png
+  figures.py          paper figures -> figures/*.png
+  build_architecture.py   architecture diagram (SVG + PNG), numbers asserted from results/
+  _svgkit.py, check_svg.py   SVG drawing kit and its pre-flight checker
 results/              runs.jsonl (every raw response), translation_audit.jsonl, summary.json, tables/
-figures/              paper figures
+figures/              paper figures and architecture.svg / .png
 slides/               build_slides.py -> index.html (10-slide deck, numbers read from results/)
 paper/                report.md -> compile.py -> Same_Strike_Different_Story.docx / .pdf
-docs/figures/         README images (slide renders)
+index.html            GitHub Pages entry: opens the slides
 tests/                parser tests
 ```
 
 ## Slides
 
-The deck is one self-contained HTML file: **[open the live slides](https://astral-fate.github.io/same-strike-different-story/slides/)**
-(arrow keys or click to move, F for fullscreen, Ctrl+P to save as PDF). Source: [`slides/index.html`](slides/index.html).
-
-<a href="https://astral-fate.github.io/same-strike-different-story/slides/"><img src="docs/figures/slide_title.jpg" alt="Title slide of the deck" width="600"></a>
+The deck is one self-contained HTML file, served as the GitHub Pages site:
+**[astral-fate.github.io/same-strike-different-story](https://astral-fate.github.io/same-strike-different-story/)**
+(arrow keys or click to move, F for fullscreen, Ctrl+P to save as PDF). Ten slides: the question, the design, the
+headline result, results by model and conflict, the Karabakh example, the language-identity check, death tolls, the
+mitigation and the takeaways. Source: [`slides/index.html`](slides/index.html), rebuilt by
+[`slides/build_slides.py`](slides/build_slides.py) from `results/`.
 
 ## Scope and limitations
 
