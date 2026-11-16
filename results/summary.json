@@ -429,5 +429,32 @@
       "high_resource_only_gap": 0.01282051282051281,
       "high_resource_only_n_events": 13
     }
+  },
+  "attribution_sensitivity": {
+    "reduction_baseline_minus_instruction": [
+      0.03947368421052631,
+      -0.004440789473684219,
+      0.07894736842105265,
+      19
+    ],
+    "gap_only_responses_with_a_letter": [
+      0.11378161976873638,
+      0.06730207927891393,
+      0.16430070490325555,
+      19
+    ],
+    "gap_without_two_ankara_events": [
+      0.0857843137254902,
+      0.04656862745098038,
+      0.12990196078431374,
+      17
+    ],
+    "gap_without_two_2025_events": [
+      0.1053921568627451,
+      0.0661764705882353,
+      0.14950980392156862,
+      17
+    ],
+    "_format": "[estimate, ci_low, ci_high, n_events]"
   }
 }

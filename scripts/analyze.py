@@ -266,6 +266,28 @@ def main(path: Path = ROOT / "results" / "runs.jsonl"):
                   "leave_one_conflict_out_gap": {k: gap(x[x.conflict != k]) for k in sorted(x.conflict.unique())},
                   "high_resource_only_gap": gap(hr), "high_resource_only_n_events": int(hr["item"].nunique())}
     summary["attribution_robustness"] = rob
+
+    # sensitivity checks on the baseline gap, each with an event-level bootstrap CI (own RNG so other results are unchanged)
+    rng_s = np.random.default_rng(1)
+
+    def ev_gap(z):
+        g = z[z.role != "en"].groupby(["item", "role"])["named"].mean().unstack()
+        return (g["victim"] - g["attacker"]).dropna()
+
+    def ci(d):
+        d = d.to_numpy()
+        bs = [d[rng_s.integers(0, len(d), len(d))].mean() for _ in range(B)]
+        return [float(d.mean()), float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5)), int(len(d))]
+
+    xb, xp = e[e.condition == "baseline"], e[e.condition == "pivot"]
+    db, dp = ev_gap(xb), ev_gap(xp)
+    summary["attribution_sensitivity"] = {
+        "reduction_baseline_minus_instruction": ci((db - dp).dropna()),
+        "gap_only_responses_with_a_letter": ci(ev_gap(xb[xb["responsible"].notna()])),
+        "gap_without_two_ankara_events": ci(db.drop(["tr_ankara2016", "tr_ankara2016feb"])),
+        "gap_without_two_2025_events": ci(db.drop(["in_pahalgam", "in_may2025"])),
+        "_format": "[estimate, ci_low, ci_high, n_events]",
+    }
     e.groupby(["condition", "item", "role"])["named"].mean().unstack().to_csv(TAB / "attribution_by_event.csv")
 
     # disputed events: responsibility distribution per language

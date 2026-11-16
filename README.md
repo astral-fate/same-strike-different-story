@@ -36,7 +36,7 @@ current models for the death toll, the civilian share and the party responsible.
 - **Death tolls: an honest null.** Tolls diverge more than for non-political disasters (19% vs 8% of language pairs
   differ by ≥25%), but the lower-toll-in-the-attacker's-language pattern reported for GPT-3.5 does not appear.
 - **A tested mitigation.** A "same answer in every language" system instruction narrows the gap to **5.5 points** on
-  average, but the reduction is not significant (3.9 points, CI −0.4 to 8.1): it helps three models a lot and the
+  average, but the reduction is not significant (3.9 points, CI −0.4 to 7.9): it helps three models a lot and the
   others not at all.
 - **English-only evaluation cannot see this**, because English answers match the victim's-language answers.
 
@@ -115,7 +115,9 @@ samples per language in agreement:
 | Event + language + model fixed effects (SE clustered by event) | **9.7** (CI 5.8–13.7) |
 | Leave one conflict out | 7.3–11.4 |
 | Well-resourced conflicts only (13 events) | 5.8 |
-| Only responses that chose an option | 11.4 (CI 6.6–16.5) |
+| Only responses that chose an option | 11.4 (CI 6.7–16.4) |
+| Without the two Ankara events (Kurmanji wording drift) | 8.6 (CI 4.7–13.0) |
+| Without the two 2025 events (possible knowledge cutoff) | 10.5 (CI 6.6–15.0) |
 | Exact McNemar on modal answers (two-sided) | 15 vs 1, p = 0.0005 |
 
 **Death tolls.** 19.3% of event language pairs differ by ≥25% against 7.9% of control pairs (one-sided Fisher p = 0.001), but
@@ -124,7 +126,7 @@ bias. Civilian shares do not differ (−0.6 points, CI −3.2 to 1.5).
 
 **Mitigation.** A fixed English system instruction asking for the same answer in every language narrows the gap from
 **9.4 to 5.5 points** (CI 0.9–10.5; McNemar 15 vs 5, p = 0.04), but the paired reduction of 3.9 points is not
-significant (CI −0.4 to 8.1). In the three well-resourced conflicts the gap under the instruction is 1.3.
+significant (CI −0.4 to 7.9). In the three well-resourced conflicts the gap under the instruction is 1.3.
 
 | Model | Gap, baseline | Gap, with instruction | Change |
 |---|---|---|---|

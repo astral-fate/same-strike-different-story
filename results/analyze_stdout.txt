@@ -1,3 +1,9 @@
+D:\ins respinse\AI x Epistemics Research Sprint\06_Our_Project\same_strike_different_toll\scripts\analyze.py:256: SingularMatrixWarning: The design matrix is rank-deficient. The model parameters are not uniquely determined.
+  fit = smf.ols("y ~ att_role + C(lang) + C(item) + C(model)", x).fit(
+D:\ins respinse\AI x Epistemics Research Sprint\06_Our_Project\same_strike_different_toll\scripts\analyze.py:256: SingularMatrixWarning: The design matrix is rank-deficient. The model parameters are not uniquely determined.
+  fit = smf.ols("y ~ att_role + C(lang) + C(item) + C(model)", x).fit(
+C:\Users\Toooo\AppData\Roaming\Python\Python314\site-packages\statsmodels\regression\linear_model.py:2121: RuntimeWarning: invalid value encountered in sqrt
+  return np.sqrt(np.diag(self.cov_params()))
 {
  "n_responses": 6335,
  "format_ok_rate": 0.9404893449092344,
