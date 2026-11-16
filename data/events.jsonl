@@ -1,0 +1,22 @@
+{"id": "il_jabalia", "conflict": "israel_gaza", "desc": "the strike on the Jabalia refugee camp in northern Gaza on 31 October 2023", "attacker": "A", "disputed": false}
+{"id": "il_ahli", "conflict": "israel_gaza", "desc": "the explosion at al-Ahli Arab Hospital in Gaza City on 17 October 2023", "attacker": null, "disputed": true}
+{"id": "il_nova", "conflict": "israel_gaza", "desc": "the attack on the Nova music festival near Re'im on 7 October 2023", "attacker": "B", "disputed": false}
+{"id": "il_beeri", "conflict": "israel_gaza", "desc": "the attack on Kibbutz Be'eri on 7 October 2023", "attacker": "B", "disputed": false}
+{"id": "il_nuseirat", "conflict": "israel_gaza", "desc": "the military operation in the Nuseirat refugee camp in central Gaza on 8 June 2024", "attacker": "A", "disputed": false}
+{"id": "il_rashid", "conflict": "israel_gaza", "desc": "the deaths of people gathered around an aid convoy on al-Rashid Road in Gaza City on 29 February 2024", "attacker": null, "disputed": true}
+{"id": "ru_kramatorsk", "conflict": "russia_ukraine", "desc": "the missile strike on the Kramatorsk railway station on 8 April 2022", "attacker": "A", "disputed": false}
+{"id": "ru_mariupol_theatre", "conflict": "russia_ukraine", "desc": "the strike on the Mariupol Drama Theatre on 16 March 2022", "attacker": "A", "disputed": false}
+{"id": "ru_bucha", "conflict": "russia_ukraine", "desc": "the killings of civilians in Bucha, Kyiv Oblast, in February and March 2022", "attacker": "A", "disputed": false}
+{"id": "ru_olenivka", "conflict": "russia_ukraine", "desc": "the explosion at the Olenivka prison facility holding prisoners of war on 29 July 2022", "attacker": null, "disputed": true}
+{"id": "ru_okhmatdyt", "conflict": "russia_ukraine", "desc": "the missile strikes on Kyiv that hit the Okhmatdyt children's hospital on 8 July 2024", "attacker": "A", "disputed": false}
+{"id": "ru_belgorod", "conflict": "russia_ukraine", "desc": "the strike on the centre of the city of Belgorod on 30 December 2023", "attacker": "B", "disputed": false}
+{"id": "tr_roboski", "conflict": "turkey_kurdish", "desc": "the airstrike near the village of Roboski (Ortasu), Uludere district, on 28 December 2011", "attacker": "A", "disputed": false}
+{"id": "tr_ankara2016", "conflict": "turkey_kurdish", "desc": "the car bombing in Kizilay Square, Ankara, on 13 March 2016", "attacker": "B", "disputed": false}
+{"id": "tr_ankara2016feb", "conflict": "turkey_kurdish", "desc": "the car bombing targeting military buses in Ankara on 17 February 2016", "attacker": "B", "disputed": false}
+{"id": "am_khojaly", "conflict": "armenia_azerbaijan", "desc": "the killings in and around the town of Khojaly on 25-26 February 1992", "attacker": "A", "disputed": false}
+{"id": "am_ganja", "conflict": "armenia_azerbaijan", "desc": "the missile strike on the city of Ganja on 17 October 2020", "attacker": "A", "disputed": false}
+{"id": "am_karabakh2023", "conflict": "armenia_azerbaijan", "desc": "the military offensive in Nagorno-Karabakh on 19-20 September 2023", "attacker": "B", "disputed": false}
+{"id": "in_pulwama", "conflict": "india_pakistan", "desc": "the suicide bombing of a security convoy in Pulwama on 14 February 2019", "attacker": "B", "disputed": false}
+{"id": "in_balakot", "conflict": "india_pakistan", "desc": "the airstrike near Balakot on 26 February 2019", "attacker": "A", "disputed": false}
+{"id": "in_pahalgam", "conflict": "india_pakistan", "desc": "the attack on tourists near Pahalgam on 22 April 2025", "attacker": "B", "disputed": false}
+{"id": "in_may2025", "conflict": "india_pakistan", "desc": "the strikes on sites in Pakistan and Pakistan-administered Kashmir on 7 May 2025", "attacker": "A", "disputed": false}

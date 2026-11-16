@@ -1,0 +1,44 @@
+03:15:00 translation_audit.jsonl: 104 jobs, 0 done, 104 to run
+03:17:25 translation_audit.jsonl: finished ok=104 err=0
+03:17:44 pilot.jsonl: 119 jobs, 0 done, 119 to run
+ERR anthropic/claude-haiku-5.5|baseline|il_ahli|ar|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ru_kramatorsk|uk|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ru_kramatorsk|en|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|il_ahli|he|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|il_ahli|en|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ru_kramatorsk|ru|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|il_ahli|ar|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ctl_titanic|hi|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ctl_titanic|ru|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ctl_titanic|ku|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+03:18:20 pilot.jsonl: finished ok=109 err=10
+03:18:43 runs.jsonl: 6336 jobs, 0 done, 6336 to run
+03:20:07 runs.jsonl: 6336 jobs, 545 done, 5791 to run
+ERR qwen/qwen3.7-flash|baseline|ctl_tohoku|az|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|pivot|tr_ankara2016|en|2: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ctl_tohoku|ku|2: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|tr_ankara2016feb|ku|1: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ctl_heatwave2003|az|1: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|pivot|il_nuseirat|en|2: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR deepseek/deepseek-chat|pivot|ctl_sf1906|tr|0: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_haiti2010|az|2: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_tohoku|he|2: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|pivot|ctl_titanic|uk|1: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|pivot|in_balakot|ur|1: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_tohoku|hi|2: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_mexico1985|tr|0: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_titanic|tr|1: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|pivot|il_ahli|ar|0: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_tohoku|en|2: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_heatwave2003|ur|2: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|baseline|ctl_tohoku|ru|0: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|pivot|ctl_titanic|tr|2: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|pivot|ctl_tohoku|ku|1: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR qwen/qwen3.7-flash|baseline|ctl_tohoku|ku|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR qwen/qwen3.7-flash|baseline|ctl_haiti2010|ku|1: APIError('truncated with no visible output (reasoning budget exhausted)')
+ERR deepseek/deepseek-chat|pivot|il_jabalia|he|0: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+ERR deepseek/deepseek-chat|pivot|ru_bucha|en|0: APIError('deepseek/deepseek-chat: gave up after 5 attempts: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-chat is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your ')
+03:38:22 runs.jsonl: finished ok=5767 err=24
+03:38:35 runs.jsonl: 6336 jobs, 6312 done, 24 to run
+ERR qwen/qwen3.7-flash|baseline|ctl_tohoku|ku|0: APIError('truncated with no visible output (reasoning budget exhausted)')
+03:40:08 runs.jsonl: finished ok=23 err=1

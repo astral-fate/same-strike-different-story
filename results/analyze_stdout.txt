@@ -1,0 +1,217 @@
+{
+ "n_responses": 6335,
+ "format_ok_rate": 0.9404893449092344,
+ "total_cost_usd": 0.6051152554000001,
+ "fragmentation": {
+  "baseline": {
+   "FI_mean_ci": [
+    0.03679998655553464,
+    0.015312962722476078,
+    0.06344165876157999
+   ],
+   "FI_share_negative": 0.13793103448275862,
+   "FI_share_positive": 0.15517241379310345,
+   "FI_wilcoxon_p": 0.10616996495740967,
+   "n_FI_cells": 116,
+   "D_events_ci": [
+    0.06600340455363941,
+    0.04214269609817126,
+    0.09228607679657767
+   ],
+   "D_controls_ci": [
+    0.053202804537258105,
+    0.02144650083550471,
+    0.09033575130817266
+   ],
+   "D_events_vs_controls_mannwhitney_p": 0.08315886110985105,
+   "W_events": 0.07057309427858717,
+   "W_controls": 0.056549016772156374,
+   "per_model": [
+    {
+     "model": "anthropic/claude-haiku-5.5",
+     "mean": 0.026371017573640923,
+     "median": 0.0,
+     "count": 18,
+     "share_neg": 0.1111111111111111,
+     "D_events": 0.032427818551569114,
+     "D_controls": 0.03849104213834965
+    },
+    {
+     "model": "deepseek/deepseek-chat",
+     "mean": 0.0419717015887935,
+     "median": 0.0,
+     "count": 15,
+     "share_neg": 0.2,
+     "D_events": 0.07105052750259706,
+     "D_controls": 0.008579455047523329
+    },
+    {
+     "model": "meta-llama/llama-3.1-8b-instruct",
+     "mean": 0.1744509302693145,
+     "median": 0.04647831144300191,
+     "count": 7,
+     "share_neg": 0.14285714285714285,
+     "D_events": 0.15785887314560293,
+     "D_controls": 0.37294044750067695
+    },
+    {
+     "model": "mistralai/mistral-small-24b-instruct-2501",
+     "mean": 0.06472046488067028,
+     "median": 0.0,
+     "count": 7,
+     "share_neg": 0.14285714285714285,
+     "D_events": 0.13012244206471008,
+     "D_controls": 0.008179982730042423
+    },
+    {
+     "model": "openai/gpt-4o-mini",
+     "mean": 0.05966499568382076,
+     "median": 0.0,
+     "count": 14,
+     "share_neg": 0.0,
+     "D_events": 0.05375834520615767,
+     "D_controls": 0.041990844778521566
+    },
+    {
+     "model": "openai/gpt-5.6-luna",
+     "mean": 0.0012786350506901452,
+     "median": 0.0,
+     "count": 19,
+     "share_neg": 0.15789473684210525,
+     "D_events": 0.043194440516741796,
+     "D_controls": 0.015632709619039276
+    },
+    {
+     "model": "qwen/qwen3.7-flash",
+     "mean": 0.025543872307255123,
+     "median": 0.0,
+     "count": 17,
+     "share_neg": 0.23529411764705882,
+     "D_events": 0.1113444966760403,
+     "D_controls": 0.011476276671384168
+    },
+    {
+     "model": "z-ai/glm-5.3-flash",
+     "mean": 0.010341842077618185,
+     "median": 0.0,
+     "count": 19,
+     "share_neg": 0.10526315789473684,
+     "D_events": 0.027700648192794133,
+     "D_controls": 0.019750688520831578
+    }
+   ],
+   "per_conflict_FI": {
+    "armenia_azerbaijan": 0.056823046375167933,
+    "india_pakistan": 0.033903996424059994,
+    "israel_gaza": 0.014568263213644427,
+    "russia_ukraine": 0.05579175965182632,
+    "turkey_kurdish": 0.01657792150432864
+   },
+   "english_closer_to_attacker_share": 0.3333333333333333,
+   "english_FI_vs_victim_mean": 0.030698782656238977,
+   "share_events_diff_ge_25pct": 0.1925925925925926,
+   "share_events_diff_ge_2x": 0.08148148148148149,
+   "share_controls_diff_ge_25pct": 0.07894736842105263,
+   "share_controls_diff_ge_2x": 0.03070175438596491,
+   "fisher_ge25pct_events_vs_controls_p": 0.001392277020117037
+  },
+  "pivot": {
+   "FI_mean_ci": [
+    0.011973491687470708,
+    -0.022962549615499546,
+    0.04602613656585868
+   ],
+   "FI_share_negative": 0.19083969465648856,
+   "FI_share_positive": 0.19083969465648856,
+   "FI_wilcoxon_p": 0.9039533766292573,
+   "n_FI_cells": 131,
+   "D_events_ci": [
+    0.09479125441599603,
+    0.057568357209979354,
+    0.13987375147225772
+   ],
+   "D_controls_ci": [
+    0.05680326493489036,
+    0.017218085174533427,
+    0.10438334930145465
+   ],
+   "D_events_vs_controls_mannwhitney_p": 0.002290241187188117,
+   "W_events": 0.08203483677327851,
+   "W_controls": 0.05231553747366003,
+   "per_model": [
+    {
+     "model": "anthropic/claude-haiku-5.5",
+     "mean": -0.03775569642014003,
+     "median": 0.0,
+     "count": 18,
+     "share_neg": 0.16666666666666666,
+     "D_events": 0.032890071796577755,
+     "D_controls": 0.032566692346273865
+    },
+    {
+     "model": "deepseek/deepseek-chat",
+     "mean": 0.05866419174773725,
+     "median": 0.0,
+     "count": 16,
+     "share_neg": 0.0625,
+     "D_events": 0.059881940864250055,
+     "D_controls": 0.01654871783718609
+    },
+    {
+     "model": "meta-llama/llama-3.1-8b-instruct",
+     "mean": 0.16704024301322937,
+     "median": 0.011379545743498773,
+     "count": 11,
+     "share_neg": 0.18181818181818182,
+     "D_events": 0.29793105651047913,
+     "D_controls": 0.25410781488820483
+    },
+    {
+     "model": "mistralai/mistral-small-24b-instruct-2501",
+     "mean": 0.01637585529595207,
+     "median": 0.0,
+     "count": 17,
+     "share_neg": 0.35294117647058826,
+     "D_events": 0.18536966124793552,
+     "D_controls": 0.06791399100224044
+    },
+    {
+     "model": "openai/gpt-4o-mini",
+     "mean": 0.10048069334941498,
+     "median": 0.0,
+     "count": 14,
+     "share_neg": 0.07142857142857142,
+     "D_events": 0.09429962783796039,
+     "D_controls": 0.0581462370836406
+    },
+    {
+     "model": "openai/gpt-5.6-luna",
+     "mean": -0.016437592359498182,
+     "median": 0.0,
+     "count": 19,
+     "share_neg": 0.21052631578947367,
+     "D_events": 0.014196102492293883,
+     "D_controls": 0.01816976669009152
+    },
+    {
+     "model": "qwen/qwen3.7-flash",
+     "mean": -0.09334034996579575,
+     "median": 0.0,
+     "count": 17,
+     "share_neg": 0.29411764705882354,
+     "D_events": 0.13143749184487327,
+     "D_controls": 0.0033810591364989455
+    },
+    {
+     "model": "z-ai/glm-5.3-flash",
+     "mean": -0.016524149324323032,
+     "median": 0.0,
+     "count": 19,
+     "share_neg": 0.15789473684210525,
+     "D_events": 0.029284474762194233,
+     "D_controls": 0.010168658826763701
+    }
+   ],
+   "per_conflict_FI": {
+    "armenia_azerbaijan": -0.03406138448003541,
+

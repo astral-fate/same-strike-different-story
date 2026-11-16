@@ -1,0 +1,7 @@
+{
+  "israel_gaza":        {"lang_a": "he", "lang_b": "ar", "party_a": "Israeli forces", "party_b": "Palestinian armed groups"},
+  "russia_ukraine":     {"lang_a": "ru", "lang_b": "uk", "party_a": "Russian forces", "party_b": "Ukrainian forces"},
+  "turkey_kurdish":     {"lang_a": "tr", "lang_b": "ku", "party_a": "Turkish state forces", "party_b": "Kurdish armed groups"},
+  "armenia_azerbaijan": {"lang_a": "hy", "lang_b": "az", "party_a": "Armenian forces", "party_b": "Azerbaijani forces"},
+  "india_pakistan":     {"lang_a": "hi", "lang_b": "ur", "party_a": "Indian state forces", "party_b": "Pakistani state forces or Pakistan-based armed groups"}
+}
