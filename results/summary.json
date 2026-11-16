@@ -393,5 +393,41 @@
       "models_gap_neg": 1,
       "conflicts_gap_pos": 3
     }
+  },
+  "attribution_robustness": {
+    "baseline": {
+      "fe_attacker_role_effect": [
+        -0.09744623655914048,
+        -0.13697981343490737,
+        -0.057912659683373585
+      ],
+      "fe_p": 1.3577300340526652e-06,
+      "leave_one_conflict_out_gap": {
+        "armenia_azerbaijan": 0.07291666666666666,
+        "india_pakistan": 0.1138888888888889,
+        "israel_gaza": 0.1027777777777778,
+        "russia_ukraine": 0.09821428571428571,
+        "turkey_kurdish": 0.0859375
+      },
+      "high_resource_only_gap": 0.057692307692307696,
+      "high_resource_only_n_events": 13
+    },
+    "pivot": {
+      "fe_attacker_role_effect": [
+        -0.052083333333333925,
+        -0.09252988724636371,
+        -0.011636779420304139
+      ],
+      "fe_p": 0.011607399788515941,
+      "leave_one_conflict_out_gap": {
+        "armenia_azerbaijan": 0.03385416666666666,
+        "india_pakistan": 0.06944444444444443,
+        "israel_gaza": 0.06944444444444443,
+        "russia_ukraine": 0.0625,
+        "turkey_kurdish": 0.041666666666666664
+      },
+      "high_resource_only_gap": 0.01282051282051281,
+      "high_resource_only_n_events": 13
+    }
   }
 }

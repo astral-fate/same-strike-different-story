@@ -198,6 +198,7 @@ def main(path: Path = ROOT / "results" / "runs.jsonl"):
     C = pd.DataFrame(crow)
     summary["civilian_pct_att_minus_vic"] = {c: boot_mean(C[C.condition == c], "civ_diff")
                                              for c in sorted(C.condition.unique())} if len(C) else {}
+    del C  # would shadow patsy's C() in the formulas below
     summary["unknown_rate"] = json.loads(unk.to_json(orient="index"))
 
     # ---- response-level attribution by language role (primary attribution analysis) ----
@@ -242,6 +243,29 @@ def main(path: Path = ROOT / "results" / "runs.jsonl"):
         byrole[c]["models_gap_neg"] = int((per_mod["victim"] < per_mod["attacker"]).sum())
         byrole[c]["conflicts_gap_pos"] = int((per_conf["victim"] > per_conf["attacker"]).sum())
     summary["attribution_by_role"] = byrole
+
+    # robustness: is the gap a property of particular languages rather than of the attacker/victim role?
+    # Linear probability model with event, language and model fixed effects, SEs clustered by event;
+    # plus leave-one-conflict-out and high-resource-only gaps.
+    import statsmodels.formula.api as smf
+    rob = {}
+    for c in sorted(e.condition.unique()):
+        x = e[(e.condition == c) & (e.role != "en")].assign(
+            y=lambda z: z["named"].astype(int), att_role=lambda z: (z["role"] == "attacker").astype(int),
+            conflict=lambda z: z["item"].map(lambda i: ev[i]["conflict"]))
+        fit = smf.ols("y ~ att_role + C(lang) + C(item) + C(model)", x).fit(
+            cov_type="cluster", cov_kwds={"groups": pd.factorize(x["item"])[0]})
+        lo, hi = fit.conf_int().loc["att_role"]
+
+        def gap(z):
+            g = z.groupby(["item", "role"])["named"].mean().unstack()
+            return float((g["victim"] - g["attacker"]).mean())
+        hr = x[~x.conflict.isin(["turkey_kurdish", "armenia_azerbaijan"])]
+        rob[c] = {"fe_attacker_role_effect": [float(fit.params["att_role"]), float(lo), float(hi)],
+                  "fe_p": float(fit.pvalues["att_role"]),
+                  "leave_one_conflict_out_gap": {k: gap(x[x.conflict != k]) for k in sorted(x.conflict.unique())},
+                  "high_resource_only_gap": gap(hr), "high_resource_only_n_events": int(hr["item"].nunique())}
+    summary["attribution_robustness"] = rob
     e.groupby(["condition", "item", "role"])["named"].mean().unstack().to_csv(TAB / "attribution_by_event.csv")
 
     # disputed events: responsibility distribution per language

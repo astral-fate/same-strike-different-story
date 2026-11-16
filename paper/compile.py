@@ -98,9 +98,9 @@ def build():
         if ln.startswith("# "):
             flush(); p = para(doc, f"**{ln[2:]}**", size=18, after=6)
         elif ln.startswith("## "):
-            flush(); p = para(doc, f"**{ln[3:]}**", size=13, after=4); p.paragraph_format.space_before = Pt(10)
+            flush(); p = para(doc, f"**{ln[3:]}**", size=13, after=4); p.paragraph_format.space_before = Pt(10); p.paragraph_format.keep_with_next = True
         elif ln.startswith("### "):
-            flush(); p = para(doc, f"**{ln[4:]}**", size=11, after=3); p.paragraph_format.space_before = Pt(6)
+            flush(); p = para(doc, f"**{ln[4:]}**", size=11, after=3); p.paragraph_format.space_before = Pt(6); p.paragraph_format.keep_with_next = True
         elif ln.startswith("- "):
             flush(); p = doc.add_paragraph(style="List Bullet") if "List Bullet" in [s.name for s in doc.styles] else doc.add_paragraph()
             p.paragraph_format.space_after = Pt(2)
