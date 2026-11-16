@@ -3,7 +3,8 @@
 **Language models attribute conflict events differently depending on the asker's language.**
 A cross-lingual audit of attribution, death tolls and civilian shares for 22 conflict events, asked in the languages of both parties, across 8 models, with a non-political negative control and a tested mitigation.
 
-📄 Paper: [`paper/Same_Strike_Different_Story.pdf`](paper/Same_Strike_Different_Story.pdf)
+📄 Paper: [`paper/Same_Strike_Different_Story.pdf`](paper/Same_Strike_Different_Story.pdf)  
+🖥️ Slides: [`slides/index.html`](slides/index.html) (self-contained; arrow keys to navigate, F for fullscreen; rebuild with `python slides/build_slides.py`)
 
 *Apart Research — AI x Epistemics Research Sprint, 13–15 November 2026 · Track 1 (Model Epistemics & Evals), Track 4 (Open)*
 
@@ -64,6 +65,7 @@ scripts/     translate.py, run.py, analyze.py, figures.py
 results/     runs.jsonl (every raw response), translation_audit.jsonl, summary.json, tables/
 figures/     fig3_attribution.png (headline), fig1_event_fi.png, fig2_model_divergence.png
 paper/       report.md -> compile.py -> Same_Strike_Different_Story.docx/.pdf (Apart template)
+slides/      build_slides.py -> index.html (10-slide deck, numbers read from results/)
 tests/       parser tests
 ```
 
