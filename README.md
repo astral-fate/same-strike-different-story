@@ -6,7 +6,7 @@
 
 <img src="figures/fig3_attribution.png" alt="Share of answers naming the reported attacker, asked in the attacker's language (orange) versus the victim's language (blue), for each of 8 models and 5 conflicts: every model and every conflict shows the same direction" width="820">
 
-[![Paper](https://img.shields.io/badge/Paper-PDF%20(Apart%20template)-1E3A5F)](paper/Same_Strike_Different_Story.pdf)
+[![Paper](https://img.shields.io/badge/Paper-PDF%20(LaTeX)-1E3A5F)](paper/Same_Strike_Different_Story.pdf)
 [![Slides](https://img.shields.io/badge/Slides-Live%20deck-0F766E)](https://astral-fate.github.io/same-strike-different-story/)
 [![Apart Sprint](https://img.shields.io/badge/Apart%20Research-AI%20x%20Epistemics%20Sprint%202026-0D9488)](https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15)
 [![Raw responses](https://img.shields.io/badge/Data-6%2C335%20raw%20responses-C2410C)](results/runs.jsonl)
@@ -36,7 +36,8 @@ current models for the death toll, the civilian share and the party responsible.
 - **Death tolls: an honest null.** Tolls diverge more than for non-political disasters (19% vs 8% of language pairs
   differ by ≥25%), but the lower-toll-in-the-attacker's-language pattern reported for GPT-3.5 does not appear.
 - **A tested mitigation.** A "same answer in every language" system instruction narrows the gap to **5.5 points** on
-  average, helping three models a lot and the others not at all.
+  average, but the reduction is not significant (3.9 points, CI −0.4 to 8.1): it helps three models a lot and the
+  others not at all.
 - **English-only evaluation cannot see this**, because English answers match the victim's-language answers.
 
 <div dir="rtl">
@@ -91,11 +92,11 @@ Built by [`scripts/build_architecture.py`](scripts/build_architecture.py), which
 
 **Attribution (baseline, 456 responses per row)**
 
-| Asked in | Names reported attacker | "Disputed / unclear" | Blames the other party | No option chosen |
-|---|---|---|---|---|
-| Attacker's language | **64.7%** | 16.9% | 3.5% | 14.5% |
-| Victim's language | **74.1%** | 10.1% | 0.9% | 14.5% |
-| English | 75.9% | 13.2% | 1.3% | 8.3% |
+| Asked in | Names reported attacker | "Disputed / unclear" | Blames the other party | "Someone else" | No option chosen |
+|---|---|---|---|---|---|
+| Attacker's language | **64.7%** | 16.9% | 3.5% | 0.4% | 14.5% |
+| Victim's language | **74.1%** | 10.1% | 0.9% | 0.4% | 14.5% |
+| English | 75.9% | 13.2% | 1.3% | 1.3% | 8.3% |
 
 **Example.** Claude Haiku 5.5 on *"the military offensive in Nagorno-Karabakh on 19–20 September 2023"*, all three
 samples per language in agreement:
@@ -114,14 +115,16 @@ samples per language in agreement:
 | Event + language + model fixed effects (SE clustered by event) | **9.7** (CI 5.8–13.7) |
 | Leave one conflict out | 7.3–11.4 |
 | Well-resourced conflicts only (13 events) | 5.8 |
-| Exact McNemar on modal answers | 15 vs 1, p = 0.0005 |
+| Only responses that chose an option | 11.4 (CI 6.6–16.5) |
+| Exact McNemar on modal answers (two-sided) | 15 vs 1, p = 0.0005 |
 
-**Death tolls.** 19.3% of event language pairs differ by ≥25% against 7.9% of control pairs (Fisher p = 0.001), but
+**Death tolls.** 19.3% of event language pairs differ by ≥25% against 7.9% of control pairs (one-sided Fisher p = 0.001), but
 13.8% of model–event cells are lower and 15.5% higher in the attacker's language (Wilcoxon p = 0.11): no directional
 bias. Civilian shares do not differ (−0.6 points, CI −3.2 to 1.5).
 
 **Mitigation.** A fixed English system instruction asking for the same answer in every language narrows the gap from
-**9.4 to 5.5 points** (CI 0.9–10.5; McNemar 15 vs 5, p = 0.04). In the three well-resourced conflicts it falls to 1.3.
+**9.4 to 5.5 points** (CI 0.9–10.5; McNemar 15 vs 5, p = 0.04), but the paired reduction of 3.9 points is not
+significant (CI −0.4 to 8.1). In the three well-resourced conflicts the gap under the instruction is 1.3.
 
 | Model | Gap, baseline | Gap, with instruction | Change |
 |---|---|---|---|
@@ -157,8 +160,10 @@ python scripts/run.py           # 2. 6,336 queries; resumable, appends to result
 python scripts/analyze.py       # 3. results/summary.json and results/tables/*.csv
 python scripts/figures.py       # 4. figures/*.png (paper figures)
 python scripts/build_architecture.py   # architecture diagram -> figures/architecture.svg + .png
-python slides/build_slides.py   # 5. slides/index.html
-python paper/compile.py         # 6. paper -> DOCX + PDF on the Apart template (needs MS Word)
+python slides/deck/build_deck.py   # 5. slides: PPTX + PDF + slides/index.html (needs LibreOffice)
+python paper/latex/md2tex.py    # 6. paper/report.md -> paper/latex/main.tex
+(cd paper/latex && latexmk -pdf main.tex && cp main.pdf ../Same_Strike_Different_Story.pdf)   # 7. PDF (MiKTeX/TeX Live)
+# fallback without LaTeX: python paper/compile.py  -> paper/fallback/*.docx (+ PDF via MS Word)
 ```
 
 Every response is appended to `results/runs.jsonl` the moment it returns, so an interrupted run resumes where it
@@ -187,20 +192,28 @@ scripts/
   _svgkit.py, check_svg.py   SVG drawing kit and its pre-flight checker
 results/              runs.jsonl (every raw response), translation_audit.jsonl, summary.json, tables/
 figures/              paper figures and architecture.svg / .png
-slides/               build_slides.py -> index.html (10-slide deck, numbers read from results/)
-paper/                report.md -> compile.py -> Same_Strike_Different_Story.docx / .pdf
+slides/               deck/build_deck.py -> 25-slide PPTX + PDF + img/ + index.html (scrollable page)
+paper/                report.md (source text) -> latex/md2tex.py -> latex/main.tex + references.bib
+                      -> Same_Strike_Different_Story.pdf; compile.py = Word fallback (fallback/)
 index.html            GitHub Pages entry: opens the slides
 tests/                parser tests
 ```
 
 ## Slides
 
-The deck is one self-contained HTML file, served as the GitHub Pages site:
-**[astral-fate.github.io/same-strike-different-story](https://astral-fate.github.io/same-strike-different-story/)**
-(arrow keys or click to move, F for fullscreen, Ctrl+P to save as PDF). Ten slides: the question, the design, the
-headline result, results by model and conflict, the Karabakh example, the language-identity check, death tolls, the
-mitigation and the takeaways. Source: [`slides/index.html`](slides/index.html), rebuilt by
-[`slides/build_slides.py`](slides/build_slides.py) from `results/`.
+The GitHub Pages site is the deck, with all slides on one scrollable page:
+**[astral-fate.github.io/same-strike-different-story](https://astral-fate.github.io/same-strike-different-story/)**.
+Download it as [PPTX](slides/Same_Strike_Different_Story_slides.pptx) or [PDF](slides/Same_Strike_Different_Story_slides.pdf).
+It has 25 slides in seven sections, each opened by a divider:
+1. **Context**: who asks models about wars, and in which language.
+2. **Problem**: translation noise versus asker-dependent attribution, and the three research questions.
+3. **Methodology**: the five conflicts, the real prompt, the measures and tests.
+4. **System architecture**: the measurement pipeline.
+5. **Results**: the 64.7 / 74.1 / 75.9% headline, every model and conflict, the Karabakh example, robustness, and death tolls.
+6. **Mitigation**: the per-model effect of the instruction.
+7. **Takeaways**: what holds and what fails, then limitations and QR links.
+
+Every number is read from `results/` by [`slides/deck/build_deck.py`](slides/deck/build_deck.py).
 
 ## Scope and limitations
 

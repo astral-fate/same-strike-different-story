@@ -15,7 +15,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 TEMPLATE = ROOT.parents[1] / "02_Guidelines" / "template" / "Apart_Sprint_Report_Template.docx"
 SRC = HERE / "report.md"
-OUT = HERE / "Same_Strike_Different_Story.docx"
+OUT = HERE / "fallback" / "Same_Strike_Different_Story_word.docx"  # fallback only; canonical PDF is built from paper/latex
 FONT = "Arial"
 INK = RGBColor(17, 24, 39)
 
@@ -124,6 +124,7 @@ def build():
             buf.append(ln.strip())
         i += 1
     flush()
+    OUT.parent.mkdir(exist_ok=True)
     doc.save(OUT)
     print("docx ->", OUT)
 
